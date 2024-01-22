@@ -2,7 +2,7 @@ import type { NextConfig } from '../../server/config-shared'
 import type { Middleware, RouteHas } from '../../lib/load-custom-routes'
 
 import LRUCache from 'next/dist/compiled/lru-cache'
-import { matcher } from 'next/dist/compiled/micromatch'
+import picomatch from 'next/dist/compiled/picomatch'
 import type { ServerRuntime } from 'next/types'
 import * as Log from '../output/log'
 import { SERVER_RUNTIME } from '../../lib/constants'
@@ -181,7 +181,7 @@ function getMiddlewareConfig(
       : [config.unstable_allowDynamic]
     for (const glob of result.unstable_allowDynamicGlobs ?? []) {
       try {
-        matcher(glob)
+        picomatch(glob)
       } catch (err) {
         throw new Error(
           `${pageFilePath} exported 'config.unstable_allowDynamic' contains invalid pattern '${glob}': ${
