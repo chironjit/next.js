@@ -3459,6 +3459,7 @@ dependencies = [
  "either",
  "fxhash",
  "hex",
+ "lightningcss",
  "once_cell",
  "pathdiff",
  "react_remove_properties",
